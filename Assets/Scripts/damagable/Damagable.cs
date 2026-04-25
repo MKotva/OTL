@@ -3,17 +3,18 @@ using UnityEngine;
 
 public class Damageable : MonoBehaviour
 {
-    public float maxHealth = 100f;
-    public float health = 100f;
+    public float maxHealth = 1000f;
+    public float health = 1000f;
     public Armour armour {get;set;} = new Armour();
     [Header("Destroy")]
     public bool destroyWhenDead = true;
     public GameObject deathEffectPrefab;
     public float deathEffectLifetime = 2f;
+    private bool dead = false;
 
     public void Awake()
     {
-        health = Mathf.Clamp(health, 0f, maxHealth);
+        //health = Mathf.Clamp(health, 0f, maxHealth);
     }
 
     public void TakeDamage(DamageInstance damage)
@@ -25,14 +26,19 @@ public class Damageable : MonoBehaviour
         health -= Mathf.Max((damage.DamageAmount*damage.DamageSpread.PhysicalDamage)-armour.PhysicalResistance,0f);
         health -= Mathf.Max((damage.DamageAmount*damage.DamageSpread.ThermalDamage)-armour.ThermalResistance,0f);
         health -= Mathf.Max((damage.DamageAmount*damage.DamageSpread.ShockDamage)-armour.ShockResistance,0f);
-
+        Debug.Log(health);
         if (health <= 0f)
             Die();
     }
 
     public virtual void Die()
     {
-        dispose();
+        if (!dead)
+        {
+             dispose(); 
+        }
+        dead=true;
+      
     }
     public void dispose()
     {
@@ -50,6 +56,13 @@ public class Damageable : MonoBehaviour
         }
 
         if (destroyWhenDead)
+        {
+            Debug.Log("You died");
+            gameObject.SetActive(false);
             Destroy(gameObject);
+
+        }
+    
+        
     }
 }

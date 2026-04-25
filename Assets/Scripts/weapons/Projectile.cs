@@ -83,14 +83,12 @@ public class Projectile : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other);
+
         if (ShouldIgnore(other))
             
             return;
 
         Vector3 hitPoint = other.ClosestPoint(transform.position);
-        Debug.Log("Hit");
-        Debug.Log(onHit);
         onHit.HandleHit(this,other.gameObject, DamageInstance);
     }
 
@@ -105,7 +103,7 @@ public class Projectile : MonoBehaviour
 
     bool ShouldIgnore(Collider other)
     {
-        Debug.Log("Ignore root "+ignoreRoot);
+
         if (other == null)
             return true;
 
@@ -121,7 +119,6 @@ public class Projectile : MonoBehaviour
 
         if (other.transform.IsChildOf(ignoreRoot))
         {
-            Debug.Log("Is child");
             return true;
         }
         

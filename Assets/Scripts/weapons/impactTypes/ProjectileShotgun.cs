@@ -20,7 +20,6 @@ public class ProjectileShotgun :  IOnHit
 
     public void ExplodeAndDestroy(Projectile proj)
     {
-        Debug.Log("Shotgun blas");
         ShotgunBlast(proj);
         if (exploded)
             return;
@@ -44,7 +43,6 @@ public class ProjectileShotgun :  IOnHit
     }
     private void ShotgunBlast(Projectile proj)
     {
-        Debug.Log("Shotgun blast");
         List<Vector3> directions = new List<Vector3>
         {
         // Cardinal directions (6)
@@ -77,8 +75,6 @@ public class ProjectileShotgun :  IOnHit
              Vector3 normalized = dir.normalized;
 
             Quaternion rotation = Quaternion.LookRotation(normalized);
-            Debug.Log(proj.selfPrefab.lifeTime);
-            Debug.Log(proj.selfPrefab.onHit);
             Projectile poj = Instantiate(proj.selfPrefab, spawnPosition, rotation);
             
         }

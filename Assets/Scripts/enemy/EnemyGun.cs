@@ -23,8 +23,6 @@ private float fireTimer;
     void Update()
     {
          fireTimer -= Time.deltaTime;
-         Debug.Log(enemyMovementScript.mainTarget);
-         Debug.Log(mainTarget);
         while (enemyMovementScript.mainTarget !=null && Vector3.Distance(enemyMovementScript.mainTarget.transform.position, this.transform.position)<=targetingRange&& fireTimer <= 0f){
             GameObject prepared = weapon.AimedFire(this.transform,mainTarget.transform);
             Projectile projectileController =
