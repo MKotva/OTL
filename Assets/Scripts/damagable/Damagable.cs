@@ -11,7 +11,7 @@ public class Damageable : MonoBehaviour
     public GameObject deathEffectPrefab;
     public float deathEffectLifetime = 2f;
 
-    void Awake()
+    public void Awake()
     {
         health = Mathf.Clamp(health, 0f, maxHealth);
     }
@@ -30,8 +30,13 @@ public class Damageable : MonoBehaviour
             Die();
     }
 
-    void Die()
+    public virtual void Die()
     {
+        dispose();
+    }
+    public void dispose()
+    {
+        
         if (deathEffectPrefab != null)
         {
             GameObject effect = Instantiate(

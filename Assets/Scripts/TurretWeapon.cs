@@ -186,20 +186,16 @@ public class TurretWeapon : MonoBehaviour
 
     void Fire()
     {
-        GameObject projectile = Instantiate(
-            weapon.projectilePrefab,
-            firePoint.position,
-            firePoint.rotation
-        );
-
-        ConfigureProjectile(projectile);
+       
+        ConfigureProjectile( weapon.Fire(firePoint));
+       
     }
 
-    void ConfigureProjectile(GameObject projectile)
+   void ConfigureProjectile(GameObject projectile)
     {
-        Projectile projectileController =
+        
+ Projectile projectileController =
             projectile.GetComponent<Projectile>();
-
         if (projectileController != null)
         {
             projectileController = weapon.configureProjectile(projectileController);

@@ -53,7 +53,7 @@ const float interval = 1f;
             personalRigidbody.linearVelocity = velocity;
             UnityEngine.Vector3 direction = UnityEngine.Vector3.Normalize(tempTarget-this.gameObject.transform.position);
             personalRigidbody.AddForce(direction*acceleration);
-            Debug.DrawLine(personalRigidbody.transform.position,this.gameObject.transform.position+personalRigidbody.linearVelocity, Color.black, 1000f);
+            //Debug.DrawLine(personalRigidbody.transform.position,this.gameObject.transform.position+personalRigidbody.linearVelocity, Color.black, 1000f);
             
             if (frameCounter >= frameInterval)
             { 
@@ -69,25 +69,25 @@ const float interval = 1f;
     {
         RaycastHit coll;
         Physics.Raycast(position, normalizedDirection, out coll, checkDistance);
-        Debug.DrawLine(position, position + normalizedDirection * checkDistance, Color.white, 10f);
+        //Debug.DrawLine(position, position + normalizedDirection * checkDistance, Color.white, 10f);
         if (coll.collider != null && !coll.collider.gameObject.CompareTag("Player"))
         {   
-            Debug.DrawLine(position, position + normalizedDirection * checkDistance, Color.red, 10f);
+            //Debug.DrawLine(position, position + normalizedDirection * checkDistance, Color.red, 10f);
            int angle = angleStart;
             angleSearch(position,normalizedDirection,checkDistance,angle);
            // UnityEngine.Vector3 leftVector = UnityEngine.Quaternion.AngleAxis(angle, UnityEngine.Vector3.up) * normalizedDirection*10000;
            //  UnityEngine.Vector3 rightVector = UnityEngine.Quaternion.AngleAxis(angle, UnityEngine.Vector3.down) * normalizedDirection*10000;
            //  UnityEngine.Vector3 upVector = UnityEngine.Quaternion.AngleAxis(angle, UnityEngine.Vector3.left) * normalizedDirection*10000;
            //  UnityEngine.Vector3 downVector = UnityEngine.Quaternion.AngleAxis(angle, UnityEngine.Vector3.right) * normalizedDirection*10000;
-           // Debug.DrawLine(position,coll.collider.gameObject.transform.position, Color.darkRed, 100f);
-           //  Debug.DrawLine(position,leftVector, Color.cadetBlue, 100f);
-           //  Debug.DrawLine(position,rightVector, Color.green, 100f);
-           //  Debug.DrawLine(position,upVector, Color.darkMagenta, 100f);
-           //  Debug.DrawLine(position,downVector, Color.brown, 100f);
+           // //Debug.DrawLine(position,coll.collider.gameObject.transform.position, Color.darkRed, 100f);
+           //  //Debug.DrawLine(position,leftVector, Color.cadetBlue, 100f);
+           //  //Debug.DrawLine(position,rightVector, Color.green, 100f);
+           //  //Debug.DrawLine(position,upVector, Color.darkMagenta, 100f);
+           //  //Debug.DrawLine(position,downVector, Color.brown, 100f);
         }else if (successfullRouteFindCounter >= successfullRouteFindInterval)
         {
             tempTarget = mainTarget.transform.position;
-            Debug.Log("Changing route back");
+            //Debug.log("Changing route back");
             successfullRouteFindCounter=0;
         }
         successfullRouteFindCounter += 1;
@@ -96,7 +96,7 @@ const float interval = 1f;
     {   
         var checkDistance = checkDistanceStart + startingCheckDistanceMultiIter;
         angle = angle + angleIter;
-        Debug.Log("Angle " +angle);
+        //Debug.log("Angle " +angle);
         UnityEngine.Vector3[] scannedDirection = new UnityEngine.Vector3[] {UnityEngine.Vector3.up,UnityEngine.Vector3.down,UnityEngine.Vector3.left,UnityEngine.Vector3.right};
             List<CollisionCheckBeam> hits = new List<CollisionCheckBeam>();
             foreach (UnityEngine.Vector3 v in scannedDirection)
@@ -105,17 +105,17 @@ const float interval = 1f;
                 UnityEngine.Vector3 dir = (UnityEngine.Quaternion.AngleAxis(angle, v) * normalizedDirection).normalized;
 
                 Physics.Raycast(position, dir, out temp, checkDistance);
-                Debug.DrawLine(position, position + dir * checkDistance, Color.blue, 10f);
+                //Debug.DrawLine(position, position + dir * checkDistance, Color.blue, 10f);
                 hits.Add(new CollisionCheckBeam(position + dir * checkDistance,temp));
-                //Debug.Log("Collision with object imminent");
+                ////Debug.log("Collision with object imminent");
             }
             List<CollisionCheckBeam> freeCourse = hits.Where(n=>n.Hit.collider==null).ToList();
             if (freeCourse.Count()>0)
             {
                 tempTarget = freeCourse.OrderByDescending(f=>UnityEngine.Vector3.Distance(f.End, tempTarget)).ToList().First().End;
                 successfullRouteFindCounter=0;
-                Debug.DrawLine(position,tempTarget, Color.green, 2f);
-                Debug.Log("Found alternative path");
+                //Debug.DrawLine(position,tempTarget, Color.green, 2f);
+                //Debug.log("Found alternative path");
             }else if (angle<angleMax)
                 {
                         angleSearch(position,normalizedDirection,checkDistance,angle);
@@ -123,8 +123,8 @@ const float interval = 1f;
             else
             {
                 tempTarget = hits.OrderByDescending(h=>h.Hit.distance).First().Hit.point;
-                Debug.DrawLine(position,tempTarget, Color.purple, 10f);
-                Debug.Log("Looking for path");
+                //Debug.DrawLine(position,tempTarget, Color.purple, 10f);
+                //Debug.log("Looking for path");
             }
     }
 

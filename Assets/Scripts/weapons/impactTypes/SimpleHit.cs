@@ -7,6 +7,7 @@ public class SimpleHit :  IOnHit
     private bool exploded {get;set;}
      public  override void HandleHit(Projectile proj,GameObject hitObject,DamageInstance damInst)
     {
+        Debug.Log("Hit");
         if (damInst!= null)
             damInst.ApplyDamage(hitObject);
 

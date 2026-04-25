@@ -15,7 +15,7 @@ public class Weapon : MonoBehaviour
     public float explosionLifetime = 2f;
     public bool destroyOnHit = true;
     public GameObject projectilePrefab;
-    public Projectile configureProjectile(Projectile projectile)
+    public virtual Projectile configureProjectile(Projectile projectile)
     {
 
            projectile.speed = velocity;
@@ -29,14 +29,21 @@ public class Weapon : MonoBehaviour
          //  projectile.shrinkDuration = projectileShrinkDuration;
         return projectile;
     }
-    public void Fire(Vector3 firepoint, )
+    public virtual GameObject Fire(Transform firePoint )
     {
-        GameObject projectile = Instantiate(
+        return Instantiate(
             this.projectilePrefab,
             firePoint.position,
             firePoint.rotation
         );
-
-        ConfigureProjectile(projectile);
+    }
+    public virtual GameObject AimedFire(Transform firePoint, Transform target )
+    {
+        Vector3 direction = target.position - firePoint.position;
+        return Instantiate(
+            this.projectilePrefab,
+            firePoint.position,
+            Quaternion.LookRotation(direction)
+        );
     }
 }

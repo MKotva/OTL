@@ -29,11 +29,11 @@ public class Projectile : MonoBehaviour
     {
         originalScale = transform.localScale;
 
-        transform.localScale = new Vector3(
-            originalScale.x,
-            originalScale.y,
-            0f
-        );
+     //   transform.localScale = new Vector3(
+     //       originalScale.x,
+     //       originalScale.y,
+     //       0f
+     //   );
          selfPrefab.DamageInstance = this.DamageInstance;
         selfPrefab.expirePrefab =this.expirePrefab;
         selfPrefab.explosionLifetime=this.explosionLifetime;
@@ -50,7 +50,7 @@ public class Projectile : MonoBehaviour
 
         transform.position += transform.forward * speed * Time.deltaTime;
 
-        UpdateScaleAnimation();
+       // UpdateScaleAnimation();
 
         if (age >= lifeTime)
             expire(transform.position);
@@ -83,10 +83,13 @@ public class Projectile : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
+        Debug.Log(other);
         if (ShouldIgnore(other))
+            
             return;
 
         Vector3 hitPoint = other.ClosestPoint(transform.position);
+        Debug.Log("Hit");
         Debug.Log(onHit);
         onHit.HandleHit(this,other.gameObject, DamageInstance);
     }
@@ -102,6 +105,7 @@ public class Projectile : MonoBehaviour
 
     bool ShouldIgnore(Collider other)
     {
+        Debug.Log("Ignore root "+ignoreRoot);
         if (other == null)
             return true;
 
@@ -116,7 +120,11 @@ public class Projectile : MonoBehaviour
             return true;
 
         if (other.transform.IsChildOf(ignoreRoot))
+        {
+            Debug.Log("Is child");
             return true;
+        }
+        
 
         return false;
     }
