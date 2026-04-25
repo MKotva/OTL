@@ -10,7 +10,6 @@ public class TurretWeapon : MonoBehaviour
         Right,
         Middle
     }
-
     [Header("Turret Parts")]
     public Transform yawPivot;
     public Transform pitchPivot;
@@ -40,10 +39,10 @@ public class TurretWeapon : MonoBehaviour
     public Key fireKey = Key.Space;
     public MouseFireButton mouseFireButton = MouseFireButton.None;
     public bool holdToFire = true;
+    [SerializeField]public Weapon weapon;
 
-    [Header("Weapon")]
-    public GameObject projectilePrefab;
-    public float fireCooldown = 0.25f;
+    
+   
 
     //[Header("Projectile Settings")]
     //public float projectileSpeed = 40f;
@@ -154,7 +153,7 @@ public class TurretWeapon : MonoBehaviour
 
     void UpdateFire()
     {
-        if (projectilePrefab == null || firePoint == null)
+        if (weapon.projectilePrefab == null || firePoint == null)
             return;
 
         fireTimer -= Time.deltaTime;
@@ -162,7 +161,7 @@ public class TurretWeapon : MonoBehaviour
         if (IsFirePressed() && fireTimer <= 0f)
         {
             Fire();
-            fireTimer = fireCooldown;
+            fireTimer = weapon.fireRate;
         }
     }
 
@@ -188,7 +187,7 @@ public class TurretWeapon : MonoBehaviour
     void Fire()
     {
         GameObject projectile = Instantiate(
-            projectilePrefab,
+            weapon.projectilePrefab,
             firePoint.position,
             firePoint.rotation
         );
@@ -198,20 +197,12 @@ public class TurretWeapon : MonoBehaviour
 
     void ConfigureProjectile(GameObject projectile)
     {
-        ProjectileController projectileController =
-            projectile.GetComponent<ProjectileController>();
+        Projectile projectileController =
+            projectile.GetComponent<Projectile>();
 
         if (projectileController != null)
         {
-            //projectileController.speed = projectileSpeed;
-            //projectileController.lifeTime = projectileLifeTime;
-
-            //projectileController.explosionPrefab = projectileExplosionPrefab;
-            //projectileController.explosionLifetime = projectileExplosionLifetime;
-
-            //projectileController.targetZScale = projectileTargetZScale;
-            //projectileController.growDuration = projectileGrowDuration;
-            //projectileController.shrinkDuration = projectileShrinkDuration;
+            projectileController = weapon.configureProjectile(projectileController);
 
             projectileController.ignoreRoot = transform.root;
         }

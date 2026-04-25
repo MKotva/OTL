@@ -331,7 +331,7 @@ public class ShieldSector : MonoBehaviour
             hitNormal
         );
 
-        damageSource.OnShieldHit(this, absorbed);
+       // damageSource.OnShieldHit(this, absorbed);
     }
 
     Vector3 GetTriggerHitPoint(Collider other)

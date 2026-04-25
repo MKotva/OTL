@@ -1,28 +1,29 @@
 using UnityEngine;
 
-public class ProjectileController : MonoBehaviour
+public class Projectile : MonoBehaviour
 {
-    [Header("Movement")]
-    public float speed = 40f;
-    public float lifeTime = 4f;
+    public float speed;
+    public float lifeTime;
 
     [Header("Scale Animation")]
     public float targetZScale = 0.1f;
     public float growDuration = 0.08f;
     public float shrinkDuration = 0.15f;
 
-    [Header("Impact")]
-    public GameObject explosionPrefab;
-    public float explosionLifetime = 2f;
-    public bool destroyOnHit = true;
+    [Header("End of life")]
+    public float explosionLifetime;
+    public bool destroyOnHit;
+    public GameObject expirePrefab;
+    public IOnHit onHit;
 
     [Header("Ignore")]
     public Transform ignoreRoot;
     public float ignoreRootDuration = 0.2f;
-
     private float age;
     private Vector3 originalScale;
     private bool exploded;
+    public  Projectile selfPrefab;
+    public DamageInstance DamageInstance {get;set;}
 
     void Start()
     {
@@ -33,10 +34,18 @@ public class ProjectileController : MonoBehaviour
             originalScale.y,
             0f
         );
+         selfPrefab.DamageInstance = this.DamageInstance;
+        selfPrefab.expirePrefab =this.expirePrefab;
+        selfPrefab.explosionLifetime=this.explosionLifetime;
+        selfPrefab.speed = this.speed;
+        selfPrefab.lifeTime = this.lifeTime;
+        selfPrefab.selfPrefab = this.selfPrefab;
+      
     }
-
+    
     void Update()
     {
+        
         age += Time.deltaTime;
 
         transform.position += transform.forward * speed * Time.deltaTime;
@@ -44,7 +53,7 @@ public class ProjectileController : MonoBehaviour
         UpdateScaleAnimation();
 
         if (age >= lifeTime)
-            ExplodeAndDestroy();
+            expire(transform.position);
     }
 
     void UpdateScaleAnimation()
@@ -78,7 +87,8 @@ public class ProjectileController : MonoBehaviour
             return;
 
         Vector3 hitPoint = other.ClosestPoint(transform.position);
-        HandleHit(other.gameObject, hitPoint);
+        Debug.Log(onHit);
+        onHit.HandleHit(this,other.gameObject, DamageInstance);
     }
 
     void OnCollisionEnter(Collision collision)
@@ -87,7 +97,7 @@ public class ProjectileController : MonoBehaviour
             return;
 
         ContactPoint contact = collision.GetContact(0);
-        HandleHit(collision.gameObject, contact.point);
+        onHit.HandleHit(this, collision.gameObject, DamageInstance);
     }
 
     bool ShouldIgnore(Collider other)
@@ -111,33 +121,17 @@ public class ProjectileController : MonoBehaviour
         return false;
     }
 
-    void HandleHit(GameObject hitObject, Vector3 hitPoint)
-    {
-        PhysicalDamageSource physicalDamage = GetComponent<PhysicalDamageSource>();
-
-        if (physicalDamage != null)
-            physicalDamage.ApplyDamage(hitObject);
-
-        if (destroyOnHit)
-            ExplodeAndDestroy(hitPoint);
-    }
-
-    public void ExplodeAndDestroy()
-    {
-        ExplodeAndDestroy(transform.position);
-    }
-
-    public void ExplodeAndDestroy(Vector3 position)
+    public void expire( Vector3 position)
     {
         if (exploded)
             return;
 
         exploded = true;
 
-        if (explosionPrefab != null)
+        if (expirePrefab != null)
         {
             GameObject explosion = Instantiate(
-                explosionPrefab,
+                expirePrefab,
                 position,
                 Quaternion.identity
             );
@@ -148,4 +142,6 @@ public class ProjectileController : MonoBehaviour
 
         Destroy(gameObject);
     }
+
+    
 }

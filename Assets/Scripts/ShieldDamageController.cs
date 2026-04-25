@@ -90,19 +90,19 @@ public class ShieldDamageController : MonoBehaviour
         return ( scale.x + scale.y + scale.z ) / 3f;
     }
 
-    public void OnShieldHit(ShieldSector shieldSector, bool absorbed)
-    {
-        if (!destroyOnShieldHit)
-            return;
-
-        if (destroyOnlyWhenShieldAbsorbs && !absorbed)
-            return;
-
-        ProjectileController projectile = GetComponent<ProjectileController>();
-
-        if (projectile != null)
-            projectile.ExplodeAndDestroy();
-        else
-            Destroy(gameObject);
-    }
-}
+   // public void OnShieldHit(ShieldSector shieldSector, bool absorbed)
+   // {
+   //     if (!destroyOnShieldHit)
+   //         return;
+//
+   //     if (destroyOnlyWhenShieldAbsorbs && !absorbed)
+   //         return;
+//
+   //     Projectile projectile = GetComponent<Projectile>();
+   //     IOnHit onHit = GetComponent<IOnHit>();
+   //     if (projectile != null)
+   //         onHit.ExplodeAndDestroy(projectile);
+   //     else
+   //         Destroy(gameObject);
+   // }
+}//
