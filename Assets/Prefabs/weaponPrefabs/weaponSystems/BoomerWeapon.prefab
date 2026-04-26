@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Weapon
   damage: 50
-  fireRate: 25
+  fireRate: 8
   velocity: 100
   duration: 25
   weaponType: 2

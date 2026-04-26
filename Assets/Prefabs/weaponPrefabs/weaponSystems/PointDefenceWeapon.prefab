@@ -52,4 +52,4 @@ MonoBehaviour:
   explosionPrefab: {fileID: 3978725368343409356, guid: e4fbb8bfb89428442a66297467173d9e, type: 3}
   explosionLifetime: 2
   destroyOnHit: 1
-  projectilePrefab: {fileID: 2100920154408191204, guid: c7eb717bca53088419de23fa8382ce19, type: 3}
+  projectilePrefab: {fileID: 2100920154408191204, guid: 881faa8f8da567648bda39de0abb21a6, type: 3}
