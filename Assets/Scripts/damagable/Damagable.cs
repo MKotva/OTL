@@ -12,6 +12,11 @@ public class Damageable : MonoBehaviour
     public float deathEffectLifetime = 2f;
     private bool dead = false;
 
+    public bool IsDead
+    {
+        get { return dead; }
+    }
+
     public void Awake()
     {
         //health = Mathf.Clamp(health, 0f, maxHealth);

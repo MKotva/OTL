@@ -90,7 +90,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4062255613233446387, guid: e4fbb8bfb89428442a66297467173d9e, type: 3}
       propertyPath: m_Volume
-      value: 0.208
+      value: 0.075
       objectReference: {fileID: 0}
     - target: {fileID: 4062255613233446387, guid: e4fbb8bfb89428442a66297467173d9e, type: 3}
       propertyPath: m_Resource
@@ -98,7 +98,7 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: b7e6afae86610be43944e88e757cd170, type: 3}
     - target: {fileID: 4062255613233446387, guid: e4fbb8bfb89428442a66297467173d9e, type: 3}
       propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
-      value: 0.548
+      value: 0.615
       objectReference: {fileID: 0}
     - target: {fileID: 4062255613233446387, guid: e4fbb8bfb89428442a66297467173d9e, type: 3}
       propertyPath: reverbZoneMixCustomCurve.m_Curve.Array.data[0].value

@@ -24,14 +24,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1568550525542577630}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.000000024554284, y: -0.000000024554279, z: 0.7071067, w: 0.7071068}
+  m_LocalRotation: {x: 0.7071068, y: 0.7071068, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2.5000005, y: 2.5000005, z: 2.5000002}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4370744008485416057}
   m_Father: {fileID: 1493516385954267202}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 90}
 --- !u!1 &2371244892721680702
 GameObject:
   m_ObjectHideFlags: 0
@@ -57,14 +57,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2371244892721680702}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: -0.9, z: 2}
   m_LocalScale: {x: 0.39999998, y: 0.39999998, z: 0.39999998}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3486036173327936858}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &66485974404820710
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -84,17 +84,24 @@ MonoBehaviour:
   rotateRightKey: 62
   rotateUpKey: 63
   rotateDownKey: 64
-  minYaw: -45
-  maxYaw: 45
-  minPitch: -30
-  maxPitch: 30
+  minYaw: -90
+  maxYaw: 90
+  minPitch: 0
+  maxPitch: 90
   rotationSpeed: 60
   yawAxis: {x: 0, y: 1, z: 0}
   pitchAxis: {x: 1, y: 0, z: 0}
   invertPitch: 0
-  fireKey: 1
-  projectilePrefab: {fileID: 0}
-  fireCooldown: 0.25
+  fireKey: 50
+  mouseFireButton: 0
+  holdToFire: 1
+  weapon: {fileID: 5374047366346657037, guid: 24ced1f14f5695c4e923eb60b0dc195e, type: 3}
+  projectileIgnoresOwnShields: 1
+  shieldsToIgnore:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   beamLine: {fileID: 4145909188596236545}
   beamVisualDistance: 100
   beamHitDetectionDistance: 10000
@@ -347,13 +354,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6763039722266227691}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 1, y: 0, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7590899035835052682}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 180, y: 0, z: 0}
 --- !u!120 &4145909188596236545
 LineRenderer:
   serializedVersion: 3

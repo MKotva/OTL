@@ -1,55 +1,82 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Rendering.Universal.Internal;
 
 public class EnemyOrchestrator : MonoBehaviour
 {
     [SerializeField]
     private ScoreBoard scoreBoard;
+
     [SerializeField]
-    private int enemyCount;
+    private int enemyCount = 3;
     private int round;
     private List<int> currentActive = new List<int>();
+
     [SerializeField]
     private GameObject basicEnemyPrefab;
-    [SerializeField] public GameObject mainTarget;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    [SerializeField]
+    public GameObject mainTarget;
 
-    // Update is called once per frame
+    private bool spawningEnabled;
+
     void Update()
     {
+        if (!spawningEnabled)
+            return;
+
         if (currentActive.Count <= 0)
         {
-            createNewRound();
+            CreateNewRound();
         }
     }
-    private void createNewRound()
-    {
-        for(int i =0; i < enemyCount; i += 1)
-        {
-            GameObject enemy = Instantiate(
-            this.basicEnemyPrefab,
-            this.transform.position+ new Vector3(round,round,round),
-            this.transform.rotation
-        );
 
-       
-         DamagableEnemy damg =enemy.GetComponent<DamagableEnemy>();
-         EnemyMovementScript move =enemy.GetComponent<EnemyMovementScript>();
-          EnemyGun egun = enemy.GetComponent<EnemyGun>();
-          move.mainTarget = mainTarget;
-         egun.mainTarget = mainTarget;
-         egun.enemyMovementScript=move;
-         damg.ident = i;
-         damg.master = this;
-         currentActive.Add(i);
-         
+    public void SetSpawningEnabled(bool enabled)
+    {
+        spawningEnabled = enabled;
+    }
+
+    private void CreateNewRound()
+    {
+        round++;
+
+        currentActive.Clear();
+
+        for (int i = 0; i < enemyCount; i++)
+        {
+            Vector3 spawnOffset = new Vector3(
+                i * 4f,
+                0f,
+                round * 8f
+            );
+
+            GameObject enemy = Instantiate(
+                basicEnemyPrefab,
+                transform.position + spawnOffset,
+                transform.rotation
+            );
+
+            DamagableEnemy damg = enemy.GetComponent<DamagableEnemy>();
+            EnemyMovementScript move = enemy.GetComponent<EnemyMovementScript>();
+            EnemyGun egun = enemy.GetComponent<EnemyGun>();
+
+            if (move != null)
+                move.mainTarget = mainTarget;
+
+            if (egun != null)
+            {
+                egun.mainTarget = mainTarget;
+                egun.enemyMovementScript = move;
+            }
+
+            if (damg != null)
+            {
+                damg.ident = i;
+                damg.master = this;
+            }
+
+            currentActive.Add(i);
         }
     }
+
     public void deregister(int ident)
     {
         currentActive.Remove(ident);
