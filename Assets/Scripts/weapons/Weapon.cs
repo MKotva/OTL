@@ -37,13 +37,20 @@ public class Weapon : MonoBehaviour
             firePoint.rotation
         );
     }
-    public virtual GameObject AimedFire(Transform firePoint, Transform target )
-    {
-        Vector3 direction = target.position - firePoint.position;
-        return Instantiate(
-            this.projectilePrefab,
-            firePoint.position,
-            Quaternion.LookRotation(direction)
-        );
-    }
+    public virtual GameObject AimedFire(Transform firePoint, Transform target)
+{
+    Collider col = target.GetComponentInChildren<Collider>();
+Vector3 aimPoint = col != null ? col.bounds.center : target.position;
+Vector3 direction = (aimPoint - firePoint.position).normalized;
+    if (direction.sqrMagnitude < 0.0001f)
+        direction = firePoint.forward;
+    else
+        direction.Normalize();
+
+    return Instantiate(
+        projectilePrefab,
+        firePoint.position,
+        Quaternion.LookRotation(direction)
+    );
+}
 }
