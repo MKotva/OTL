@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8837981254364899871}
   - component: {fileID: 5374047366346657037}
   m_Layer: 0
-  m_Name: EnemyRam
+  m_Name: EnemyStandoffNuke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,10 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66433b0d847de9b4c8ea97275c383aac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Weapon
-  damage: 2000
+  damage: 1200
   fireRate: 200
   velocity: 1
-  duration: 1
+  duration: 5
   weaponType: 2
   explosionPrefab: {fileID: 3978725368343409356, guid: e4fbb8bfb89428442a66297467173d9e, type: 3}
   explosionLifetime: 2

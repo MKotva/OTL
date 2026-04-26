@@ -218,10 +218,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 39e70a75a902cb0429e664cad61c1fcd, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1274642160}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 39e70a75a902cb0429e664cad61c1fcd, type: 3}
 --- !u!114 &48987776 stripped
 MonoBehaviour:
@@ -747,6 +744,7 @@ GameObject:
   - component: {fileID: 587578468}
   - component: {fileID: 587578469}
   - component: {fileID: 587578470}
+  - component: {fileID: 587578471}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -788,8 +786,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba56095493f18cd4e8fe5dedc327650e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerControl
-  acceleration: 20
-  maxSpeed: 18
+  acceleration: 100
+  maxSpeed: 50
   damping: 2
   angularAcceleration: 220
   maxAngularSpeed: 120
@@ -847,6 +845,23 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 10, y: 12, z: 35}
   m_Center: {x: 0, y: -4, z: -5}
+--- !u!114 &587578471
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 587578466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fe3f71c90dafcb4a850fd952fe7946c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Damageable
+  maxHealth: 2000
+  health: 2000
+  destroyWhenDead: 1
+  deathEffectPrefab: {fileID: 0}
+  deathEffectLifetime: 2
 --- !u!4 &661022762 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6098124254183990962, guid: 9292e75e83b53dc49b47ea01393af5a1, type: 3}
@@ -1164,23 +1179,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 39e70a75a902cb0429e664cad61c1fcd, type: 3}
   m_PrefabInstance: {fileID: 16938262}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1274642160
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1274642155}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9fe3f71c90dafcb4a850fd952fe7946c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Damageable
-  maxHealth: 1000
-  health: 1000
-  destroyWhenDead: 1
-  deathEffectPrefab: {fileID: 0}
-  deathEffectLifetime: 2
 --- !u!1 &1300744245 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 871864132404946965, guid: d195ee4393282ca469e852d1b9c127c5, type: 3}
@@ -1740,7 +1738,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be252f5b5496ab94581dd7ed352b57a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  player: {fileID: 1274642160}
+  player: {fileID: 587578471}
   showTutorialOnStart: 1
   tutorialPopupPrefab: {fileID: 4954906959040134682, guid: 0e68c40f4d7f45245bd0d96d80b3f2a0, type: 3}
   tutorialParent: {fileID: 1859309200}
@@ -1894,7 +1892,7 @@ PrefabInstance:
     - target: {fileID: 6143033882715975539, guid: c6e5b8626afd10a4bb1b3387eaec24d6, type: 3}
       propertyPath: ship
       value: 
-      objectReference: {fileID: 1274642160}
+      objectReference: {fileID: 587578471}
     - target: {fileID: 6143033882715975539, guid: c6e5b8626afd10a4bb1b3387eaec24d6, type: 3}
       propertyPath: upText
       value: 
@@ -1950,7 +1948,7 @@ PrefabInstance:
     - target: {fileID: 6143033882715975539, guid: c6e5b8626afd10a4bb1b3387eaec24d6, type: 3}
       propertyPath: shipHealth
       value: 
-      objectReference: {fileID: 1274642160}
+      objectReference: {fileID: 0}
     - target: {fileID: 6143033882715975539, guid: c6e5b8626afd10a4bb1b3387eaec24d6, type: 3}
       propertyPath: rightShield
       value: 
