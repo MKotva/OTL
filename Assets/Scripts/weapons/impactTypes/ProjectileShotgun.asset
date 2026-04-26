@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84b8b6fc858a8944592c5d969ed8ea7b, type: 3}
   m_Name: ProjectileShotgun
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileShotgun
-  explosionPrefab: {fileID: 3978725368343409356, guid: e4fbb8bfb89428442a66297467173d9e, type: 3}
+  explosionPrefab: {fileID: 0}
   explosionLifetime: 2

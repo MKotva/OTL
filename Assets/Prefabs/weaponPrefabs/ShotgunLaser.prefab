@@ -127,7 +127,7 @@ MonoBehaviour:
   explosionLifetime: 2
   destroyOnHit: 1
   expirePrefab: {fileID: 3978725368343409356, guid: e4fbb8bfb89428442a66297467173d9e, type: 3}
-  onHit: {fileID: 11400000, guid: eb8c444dc91838a4e88313560df70fee, type: 2}
+  onHit: {fileID: 11400000, guid: 79bca0dae1cd07b4e9fd00639bff729d, type: 2}
   ignoreRoot: {fileID: 0}
   ignoreRootDuration: 0.2
   selfPrefab: {fileID: 5348686908755339064, guid: c7eb717bca53088419de23fa8382ce19, type: 3}

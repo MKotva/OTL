@@ -12,6 +12,7 @@ public class EnemyMovementScript : MonoBehaviour
     [SerializeField] public int maxSpeed;
     [SerializeField] public GameObject mainTarget;
     [SerializeField] public int targetDistance;
+    [SerializeField] public Transform modelTransform;
     private Rigidbody personalRigidbody;
     private UnityEngine.Vector3 tempTarget;
     private int frameCounter = 0;
@@ -22,6 +23,8 @@ public class EnemyMovementScript : MonoBehaviour
     private int angleIter = 10;
     private int angleMax = 120;
     private int framesDirection = 0;
+    [SerializeField]
+    private int rotationSpeed = 30;
 
     float timer = 0f;
 const float interval = 1f;
@@ -35,7 +38,7 @@ const float interval = 1f;
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
          timer += Time.deltaTime;
 
@@ -52,6 +55,8 @@ const float interval = 1f;
             velocity = UnityEngine.Vector3.ClampMagnitude(velocity, maxSpeed);
             personalRigidbody.linearVelocity = velocity;
             UnityEngine.Vector3 direction = UnityEngine.Vector3.Normalize(tempTarget-this.gameObject.transform.position);
+            UnityEngine.Quaternion facingRotation = UnityEngine.Quaternion.LookRotation(direction);
+            
             personalRigidbody.AddForce(direction*acceleration);
             //Debug.DrawLine(personalRigidbody.transform.position,this.gameObject.transform.position+personalRigidbody.linearVelocity, Color.black, 1000f);
             
@@ -62,7 +67,18 @@ const float interval = 1f;
                  frameCounter = 0;
             }
            frameCounter += 1;
-        
+            velocity = personalRigidbody.linearVelocity;
+
+            if (velocity.sqrMagnitude > 0.01f)
+            {
+            UnityEngine.Quaternion targetRotation = UnityEngine.Quaternion.LookRotation(velocity.normalized);
+
+                modelTransform.rotation = UnityEngine.Quaternion.Slerp(
+                modelTransform.rotation,
+             targetRotation,
+                rotationSpeed * Time.deltaTime
+            );
+}
         }
     }
     void detectColision(UnityEngine.Vector3 normalizedDirection,UnityEngine.Vector3 position, int checkDistance )
@@ -75,15 +91,6 @@ const float interval = 1f;
             //Debug.DrawLine(position, position + normalizedDirection * checkDistance, Color.red, 10f);
            int angle = angleStart;
             angleSearch(position,normalizedDirection,checkDistance,angle);
-           // UnityEngine.Vector3 leftVector = UnityEngine.Quaternion.AngleAxis(angle, UnityEngine.Vector3.up) * normalizedDirection*10000;
-           //  UnityEngine.Vector3 rightVector = UnityEngine.Quaternion.AngleAxis(angle, UnityEngine.Vector3.down) * normalizedDirection*10000;
-           //  UnityEngine.Vector3 upVector = UnityEngine.Quaternion.AngleAxis(angle, UnityEngine.Vector3.left) * normalizedDirection*10000;
-           //  UnityEngine.Vector3 downVector = UnityEngine.Quaternion.AngleAxis(angle, UnityEngine.Vector3.right) * normalizedDirection*10000;
-           // //Debug.DrawLine(position,coll.collider.gameObject.transform.position, Color.darkRed, 100f);
-           //  //Debug.DrawLine(position,leftVector, Color.cadetBlue, 100f);
-           //  //Debug.DrawLine(position,rightVector, Color.green, 100f);
-           //  //Debug.DrawLine(position,upVector, Color.darkMagenta, 100f);
-           //  //Debug.DrawLine(position,downVector, Color.brown, 100f);
         }else if (successfullRouteFindCounter >= successfullRouteFindInterval)
         {
             tempTarget = mainTarget.transform.position;

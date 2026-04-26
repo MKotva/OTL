@@ -6,6 +6,8 @@ public class EnemyOrchestrator : MonoBehaviour
 {
     [SerializeField]
     private ScoreBoard scoreBoard;
+    [SerializeField]
+    private int enemyCount;
     private int round;
     private List<int> currentActive = new List<int>();
     [SerializeField]
@@ -27,7 +29,7 @@ public class EnemyOrchestrator : MonoBehaviour
     }
     private void createNewRound()
     {
-        for(int i =0; i < 10; i += 1)
+        for(int i =0; i < enemyCount; i += 1)
         {
             GameObject enemy = Instantiate(
             this.basicEnemyPrefab,

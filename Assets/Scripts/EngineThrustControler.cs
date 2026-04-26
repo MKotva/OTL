@@ -42,6 +42,13 @@ public class EngineThrustControler : MonoBehaviour
     [Header("Smoothing")]
     [SerializeField] private float changeSpeed = 10f;
 
+    [Header("Audio")]
+    [SerializeField] private AudioSource engineAudioSource;
+
+    [SerializeField] private float minEngineVolume = 0f;
+    [SerializeField] private float maxEngineVolume = 0.6f;
+    [SerializeField] private float boostEngineVolume = 0.9f;
+
     private float targetThrust;
     private float currentThrust;
 
@@ -60,6 +67,15 @@ public class EngineThrustControler : MonoBehaviour
         {
             thrustParticles.Play();
         }
+
+        if (engineAudioSource != null)
+        {
+            engineAudioSource.loop = true;
+            engineAudioSource.volume = minEngineVolume;
+
+            if (!engineAudioSource.isPlaying)
+                engineAudioSource.Play();
+        }
     }
 
     private void Update()
@@ -73,6 +89,32 @@ public class EngineThrustControler : MonoBehaviour
         UpdateCone();
         UpdateParticles();
         UpdateLight();
+        UpdateAudio();
+    }
+
+    private void UpdateAudio()
+    {
+        if (engineAudioSource == null)
+        {
+            return;
+        }
+
+        float normalThrust = Mathf.Clamp01(currentThrust);
+        float boostThrust = Mathf.InverseLerp(1f, 1.4f, currentThrust);
+
+        float volume = Mathf.Lerp(
+            minEngineVolume,
+            maxEngineVolume,
+            normalThrust
+        );
+
+        volume = Mathf.Lerp(
+            volume,
+            boostEngineVolume,
+            boostThrust
+        );
+
+        engineAudioSource.volume = volume;
     }
 
     public void SetThrust(float thrust)

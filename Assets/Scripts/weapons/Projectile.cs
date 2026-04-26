@@ -89,6 +89,7 @@ public class Projectile : MonoBehaviour
             return;
 
         Vector3 hitPoint = other.ClosestPoint(transform.position);
+        Debug.Log(onHit);
         onHit.HandleHit(this,other.gameObject, DamageInstance);
     }
 

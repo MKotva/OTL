@@ -66,7 +66,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b34b023bbc0daad40b30291a9b0509f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyGun
-  weapon: {fileID: 5374047366346657037, guid: a020bdc8354d0f74bbf08eedc172cd1f, type: 3}
+  weapon: {fileID: 5374047366346657037, guid: beff54c739a05954ba84a8833a2b938d, type: 3}
   enemyMovementScript: {fileID: 6092882823990330213, guid: 8c6c14c471b6d2d45a343714aed0865d, type: 3}
   targetingRange: 100
   mainTarget: {fileID: 0}

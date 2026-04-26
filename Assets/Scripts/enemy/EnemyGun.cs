@@ -6,6 +6,8 @@ public class EnemyGun : MonoBehaviour
 
 [SerializeField]     public EnemyMovementScript enemyMovementScript;
 [SerializeField] float targetingRange;
+[SerializeField] float shotCount;
+[SerializeField] bool selfDestruct =false;
 
 [SerializeField] public GameObject mainTarget;
 private float fireTimer;
@@ -24,7 +26,7 @@ private float fireTimer;
     {
          fireTimer -= Time.deltaTime;
         while (enemyMovementScript.mainTarget !=null && Vector3.Distance(enemyMovementScript.mainTarget.transform.position, this.transform.position)<=targetingRange&& fireTimer <= 0f){
-            GameObject prepared = weapon.AimedFire(this.transform,mainTarget.transform);
+            GameObject prepared = weapon.AimedFire(enemyMovementScript.modelTransform,mainTarget.transform);
             Projectile projectileController =
             prepared.GetComponent<Projectile>();
         if (projectileController != null)
@@ -34,6 +36,11 @@ private float fireTimer;
             projectileController.ignoreRoot = transform.root;
         }
             fireTimer = weapon.fireRate;
+            if (selfDestruct)
+            {
+                DamagableEnemy damagableEnemy = gameObject.GetComponent<DamagableEnemy>();
+                damagableEnemy.Die();
+            }
         }
 
         

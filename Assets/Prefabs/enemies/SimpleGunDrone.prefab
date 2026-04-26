@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1664311183782188257}
   - component: {fileID: 3411193038331936117}
   m_Layer: 0
-  m_Name: EnemyV1
+  m_Name: SimpleGunDrone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -53,7 +53,9 @@ MonoBehaviour:
   acceleration: 200
   maxSpeed: 50
   mainTarget: {fileID: 0}
-  targetDistance: 2
+  targetDistance: 30
+  modelTransform: {fileID: 4264911694275992534}
+  rotationSpeed: 30
 --- !u!114 &8371618051749493885
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66,7 +68,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b34b023bbc0daad40b30291a9b0509f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyGun
-  weapon: {fileID: 5374047366346657037, guid: a020bdc8354d0f74bbf08eedc172cd1f, type: 3}
+  weapon: {fileID: 5374047366346657037, guid: beff54c739a05954ba84a8833a2b938d, type: 3}
   enemyMovementScript: {fileID: 6092882823990330213, guid: 8c6c14c471b6d2d45a343714aed0865d, type: 3}
   targetingRange: 100
   mainTarget: {fileID: 0}
@@ -149,8 +151,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 8.070946, y: 2.186974, z: 12.009758}
-  m_Center: {x: 3.5354729, y: -0.5934871, z: 22.24924}
+  m_Size: {x: 8.070946, y: 5.6454444, z: 12.009758}
+  m_Center: {x: 3.5354729, y: -0.34134126, z: 22.24924}
 --- !u!1001 &4376016608502987837
 PrefabInstance:
   m_ObjectHideFlags: 0
