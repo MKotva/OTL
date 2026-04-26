@@ -291,6 +291,10 @@ PrefabInstance:
       propertyPath: mainTarget
       value: 
       objectReference: {fileID: 1274642155}
+    - target: {fileID: 640205399145753782, guid: e671f4e193076d04a8d205ff8311ea44, type: 3}
+      propertyPath: weaponUnlockManager
+      value: 
+      objectReference: {fileID: 1859309203}
     - target: {fileID: 3999050089138868872, guid: e671f4e193076d04a8d205ff8311ea44, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.13863
@@ -860,7 +864,7 @@ MonoBehaviour:
   maxHealth: 2000
   health: 2000
   destroyWhenDead: 1
-  deathEffectPrefab: {fileID: 0}
+  deathEffectPrefab: {fileID: 2705923711570352123, guid: 4980eab4867e88e4597bfc0ee4c35296, type: 3}
   deathEffectLifetime: 2
 --- !u!4 &661022762 stripped
 Transform:
@@ -991,6 +995,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f352a4ebb0fa10440b48f6534cd541d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+--- !u!1 &952282054 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8326456741152545987, guid: be44fae86079f3146a9949a9b3b6f159, type: 3}
+  m_PrefabInstance: {fileID: 4617748216241323655}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1046480408 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2790087050078069389, guid: c6e5b8626afd10a4bb1b3387eaec24d6, type: 3}
@@ -1411,11 +1420,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7552922393321917873, guid: c6e5b8626afd10a4bb1b3387eaec24d6, type: 3}
   m_PrefabInstance: {fileID: 40063713946704431}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1510583020 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7739989160006136919, guid: be44fae86079f3146a9949a9b3b6f159, type: 3}
-  m_PrefabInstance: {fileID: 4617748216241323655}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1514664025
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1758,7 +1762,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponManager
   lockedWeapons:
-  - {fileID: 1510583020}
+  - {fileID: 952282054}
   - {fileID: 2075712302}
   - {fileID: 537859323}
   - {fileID: 755080790}
@@ -3178,9 +3182,17 @@ PrefabInstance:
       propertyPath: 'shieldsToIgnore.Array.data[3]'
       value: 
       objectReference: {fileID: 48987776}
+    - target: {fileID: 1062561626100055574, guid: be44fae86079f3146a9949a9b3b6f159, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1220801304046801434, guid: be44fae86079f3146a9949a9b3b6f159, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1610750728100402818, guid: be44fae86079f3146a9949a9b3b6f159, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1956362698625302994, guid: be44fae86079f3146a9949a9b3b6f159, type: 3}
       propertyPath: m_IsActive
@@ -3273,6 +3285,10 @@ PrefabInstance:
     - target: {fileID: 4287116066521287870, guid: be44fae86079f3146a9949a9b3b6f159, type: 3}
       propertyPath: m_Name
       value: Turrets
+      objectReference: {fileID: 0}
+    - target: {fileID: 4287116066521287870, guid: be44fae86079f3146a9949a9b3b6f159, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4702405195918835427, guid: be44fae86079f3146a9949a9b3b6f159, type: 3}
       propertyPath: ignoreRoot
@@ -3383,6 +3399,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6019599958810731291, guid: be44fae86079f3146a9949a9b3b6f159, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6019599958810731291, guid: be44fae86079f3146a9949a9b3b6f159, type: 3}
       propertyPath: ignoreRoot
       value: 
       objectReference: {fileID: 587578467}
@@ -3488,7 +3508,7 @@ PrefabInstance:
       objectReference: {fileID: 48987776}
     - target: {fileID: 7739989160006136919, guid: be44fae86079f3146a9949a9b3b6f159, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7836820678594906902, guid: be44fae86079f3146a9949a9b3b6f159, type: 3}
       propertyPath: ignoreRoot
@@ -3510,6 +3530,10 @@ PrefabInstance:
       propertyPath: 'shieldsToIgnore.Array.data[3]'
       value: 
       objectReference: {fileID: 48987776}
+    - target: {fileID: 8326456741152545987, guid: be44fae86079f3146a9949a9b3b6f159, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8690371799912945807, guid: be44fae86079f3146a9949a9b3b6f159, type: 3}
       propertyPath: m_IsActive
       value: 0

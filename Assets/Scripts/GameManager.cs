@@ -26,6 +26,8 @@ public class GameManager : MonoBehaviour
     private bool gameStarted;
     private bool gameOver;
 
+    private static bool tutorialAlreadyShown;
+
     void Start()
     {
         Time.timeScale = 1f;
@@ -33,8 +35,9 @@ public class GameManager : MonoBehaviour
         if (enemyOrchestrator != null)
             enemyOrchestrator.SetSpawningEnabled(false);
 
-        if (showTutorialOnStart && tutorialPopupPrefab != null)
+        if (showTutorialOnStart && !tutorialAlreadyShown && tutorialPopupPrefab != null)
         {
+            tutorialAlreadyShown = true;
             StartTutorial();
         }
         else
@@ -158,15 +161,7 @@ public class GameManager : MonoBehaviour
 
     string GetScoreText()
     {
-        //if (scoreBoard == null)
-        //    return "0";
-
-        //object scoreValue = TryGetScoreValue(scoreBoard);
-
-        //if (scoreValue == null)
-         return "0";
-
-        //return scoreValue.ToString();
+        return "0";
     }
 
     object TryGetScoreValue(Component component)
