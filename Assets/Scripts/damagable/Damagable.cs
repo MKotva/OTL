@@ -31,7 +31,6 @@ public class Damageable : MonoBehaviour
         health -= Mathf.Max((damage.DamageAmount*damage.DamageSpread.PhysicalDamage)-armour.PhysicalResistance,0f);
         health -= Mathf.Max((damage.DamageAmount*damage.DamageSpread.ThermalDamage)-armour.ThermalResistance,0f);
         health -= Mathf.Max((damage.DamageAmount*damage.DamageSpread.ShockDamage)-armour.ShockResistance,0f);
-        Debug.Log(health);
         if (health <= 0f)
             Die();
     }

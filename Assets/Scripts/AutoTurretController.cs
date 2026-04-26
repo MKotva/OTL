@@ -12,6 +12,8 @@ public class AutoTurretController : MonoBehaviour
     [SerializeField] private LayerMask enemyLayer;
     [SerializeField] private int maxColliders = 32;
     [SerializeField] private float scanInterval = 0.5f;
+    bool projectileIgnoresOwnShields = true;
+    public ShieldSector[] shieldsToIgnore;
     
     private Collider[] hitsBuffer = new Collider[32];
     private float scanTimer;
@@ -58,6 +60,23 @@ public class AutoTurretController : MonoBehaviour
             projectileController = weapon.configureProjectile(projectileController);
 
             projectileController.ignoreRoot = transform.root;
+            ShieldDamageController shieldDamage =
+            projectileController.GetComponent<ShieldDamageController>();
+
+        if (shieldDamage != null)
+        {
+            //shieldDamage.shieldDamage = projectileShieldDamage;
+
+            if (projectileIgnoresOwnShields)
+            {
+                ShieldSector[] ignored = shieldsToIgnore;
+
+                if (ignored == null || ignored.Length == 0)
+                    ignored = transform.root.GetComponentsInChildren<ShieldSector>(true);
+
+                shieldDamage.SetIgnoredShields(ignored);
+            }
+        }
         }
             fireTimer = weapon.fireRate;
         

@@ -1,20 +1,28 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
+using NUnit.Framework.Internal;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyOrchestrator : MonoBehaviour
 {
     [SerializeField]
     private ScoreBoard scoreBoard;
+    [SerializeField]
+    private SpaceBoundaries spaceBoundaries;
 
     [SerializeField]
     private int enemyCount = 3;
+    [SerializeField]
+    private int enemyRoundIncrease = 15;
 
     private int round;
     private List<int> currentActive = new List<int>();
 
     [SerializeField]
-    private GameObject basicEnemyPrefab;
+    private List<GameObject> enemyPrefab;
 
     [SerializeField]
     public GameObject mainTarget;
@@ -25,7 +33,7 @@ public class EnemyOrchestrator : MonoBehaviour
 
     [SerializeField]
     private float delayBeforeNextRound = 2f;
-
+  
     private bool spawningEnabled;
     private bool roundTransitionRunning;
 
@@ -67,21 +75,41 @@ public class EnemyOrchestrator : MonoBehaviour
 
     private void CreateNewRound()
     {
+        Debug.Log("Round " + round);
         round++;
-
-        currentActive.Clear();
-
+        enemyCount += enemyRoundIncrease;
+        int groups = Math.Min((int)enemyCount/10,10);
+        int enemyPerGroup = enemyCount/groups;
+        for(int i = 0; i <= groups; i++)
+        {
+             for(int it = 0; it <= enemyPerGroup; it++)
+        {
+            int randomUnit = UnityEngine.Random.Range(0, enemyPrefab.Count);
+            createNewEnemy(enemyPrefab[randomUnit],createGroupCenter(0, (int)spaceBoundaries.innerRadius, mainTarget,it),it);
+        }
+        }
         for (int i = 0; i < enemyCount; i++)
         {
-            Vector3 spawnOffset = new Vector3(
+            UnityEngine.Vector3 spawnOffset = new UnityEngine.Vector3(
                 i * 4f,
                 0f,
                 round * 8f
             );
 
-            GameObject enemy = Instantiate(
-                basicEnemyPrefab,
-                transform.position + spawnOffset,
+            
+        }
+    }
+
+    public void deregister(int ident)
+    {
+        currentActive.Remove(ident);
+        scoreBoard.increaseScore(1);
+    }
+    private void createNewEnemy(GameObject enemyPrefab, UnityEngine.Vector3 startingPosition, int i)
+    {
+        GameObject enemy = Instantiate(
+                enemyPrefab,
+                startingPosition,
                 transform.rotation
             );
 
@@ -105,11 +133,21 @@ public class EnemyOrchestrator : MonoBehaviour
             }
 
             currentActive.Add(i);
-        }
     }
-
-    public void deregister(int ident)
+    private UnityEngine.Vector3 createGroupCenter(int min, int max,GameObject player, int increment)
     {
-        currentActive.Remove(ident);
+        int x = UnityEngine.Random.Range(min, max);
+        int y = UnityEngine.Random.Range(min, max);
+        int z = UnityEngine.Random.Range(min, max);
+        UnityEngine.Vector3 temp = new UnityEngine.Vector3(x+increment,y+increment,y+increment);
+        int maxCount = 0;
+        while(maxCount <= 10 && UnityEngine.Vector3.Distance(player.transform.position, temp) <= 150){
+            x = UnityEngine.Random.Range(min, max);
+            y = UnityEngine.Random.Range(min, max);
+            z = UnityEngine.Random.Range(min, max);
+            temp = new UnityEngine.Vector3(x+increment,y+increment,y+increment);
+            maxCount += 1;
+        }
+        return  temp;
     }
 }
