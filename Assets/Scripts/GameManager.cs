@@ -119,7 +119,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void ResetGame()
+    public static void ResetGame()
     {
         Time.timeScale = 1f;
 
@@ -128,7 +128,7 @@ public class GameManager : MonoBehaviour
         );
     }
 
-    public void EndGame()
+    public static void EndGame()
     {
         Time.timeScale = 1f;
 

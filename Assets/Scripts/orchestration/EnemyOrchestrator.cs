@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,30 +9,60 @@ public class EnemyOrchestrator : MonoBehaviour
 
     [SerializeField]
     private int enemyCount = 3;
+
     private int round;
     private List<int> currentActive = new List<int>();
 
     [SerializeField]
     private GameObject basicEnemyPrefab;
+
     [SerializeField]
     public GameObject mainTarget;
 
+    [Header("Round Rewards")]
+    [SerializeField]
+    private WeaponManager weaponUnlockManager;
+
+    [SerializeField]
+    private float delayBeforeNextRound = 2f;
+
     private bool spawningEnabled;
+    private bool roundTransitionRunning;
 
     void Update()
     {
         if (!spawningEnabled)
             return;
 
+        if (roundTransitionRunning)
+            return;
+
         if (currentActive.Count <= 0)
         {
-            CreateNewRound();
+            if (round <= 0)
+                CreateNewRound();
+            else
+                StartCoroutine(HandleRoundCompleted());
         }
     }
 
     public void SetSpawningEnabled(bool enabled)
     {
         spawningEnabled = enabled;
+    }
+
+    private IEnumerator HandleRoundCompleted()
+    {
+        roundTransitionRunning = true;
+
+        if (weaponUnlockManager != null)
+            weaponUnlockManager.UnlockRandomWeapon();
+
+        yield return new WaitForSeconds(delayBeforeNextRound);
+
+        CreateNewRound();
+
+        roundTransitionRunning = false;
     }
 
     private void CreateNewRound()

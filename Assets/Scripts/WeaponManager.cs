@@ -4,48 +4,70 @@ using UnityEngine;
 
 public class WeaponManager : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    [Header("Weapons")]
+    [SerializeField]
+    private List<GameObject> lockedWeapons = new List<GameObject>();
 
-   [SerializeField] private Transform frontGun1;
-   [SerializeField] private Transform frontGun2;
-   [SerializeField] private Transform dorsalUpperTurret1;
-   [SerializeField] private Transform dorsalUpperTurret2;
-   [SerializeField] private Transform dorsalLowerTurret3;
-   [SerializeField] private Transform dorsalLowerTurret4;
-   [SerializeField] private Transform pointLeftDefence1;
-   [SerializeField] private Transform pointleftDefence2;
-   [SerializeField] private Transform pointRightDefence3;
-   [SerializeField] private Transform pointRightDefence4;
-   public Dictionary<String,Transform> weaponLocations = new Dictionary<string, Transform>();
-    void Awake()
+    [Header("Popup")]
+    [SerializeField]
+    private GameObject weaponUnlockPopupPrefab;
+
+    [SerializeField]
+    private Transform popupParent;
+
+    [SerializeField]
+    private float popupDuration = 2f;
+
+    private GameObject activePopup;
+
+    public GameObject UnlockRandomWeapon()
     {
-    weaponLocations.Add(nameof(frontGun1), frontGun1);
-    weaponLocations.Add(nameof(frontGun2), frontGun2);
-    weaponLocations.Add(nameof(dorsalUpperTurret1), dorsalUpperTurret1);
-    weaponLocations.Add(nameof(dorsalUpperTurret2), dorsalUpperTurret2);
-    weaponLocations.Add(nameof(dorsalLowerTurret3), dorsalLowerTurret3);
-    weaponLocations.Add(nameof(dorsalLowerTurret4), dorsalLowerTurret4);
-    weaponLocations.Add(nameof(pointLeftDefence1), pointLeftDefence1);
-    weaponLocations.Add(nameof(pointleftDefence2), pointleftDefence2);
-    weaponLocations.Add(nameof(pointRightDefence3), pointRightDefence3);
-    weaponLocations.Add(nameof(pointRightDefence4), pointRightDefence4);
-    }
-    void Start()
-    {
-        
+        List<GameObject> availableWeapons = new List<GameObject>();
+
+        for (int i = 0; i < lockedWeapons.Count; i++)
+        {
+            GameObject weapon = lockedWeapons[i];
+
+            if (weapon == null)
+                continue;
+
+            if (!weapon.activeSelf)
+                availableWeapons.Add(weapon);
+        }
+
+        if (availableWeapons.Count <= 0)
+            return null;
+
+        GameObject selectedWeapon = availableWeapons[
+            UnityEngine.Random.Range(0, availableWeapons.Count)
+        ];
+
+        selectedWeapon.SetActive(true);
+        ShowPopup(selectedWeapon);
+
+        return selectedWeapon;
     }
 
-    // Update is called once per frame
-    void Update()
+    void ShowPopup(GameObject unlockedWeapon)
     {
-        
-    }
-    public GameObject AddWeapon(String name, GameObject weaponPrefab)
-    {
-         return Instantiate(
-            weaponPrefab,
-            weaponLocations[name].position,
-            Quaternion.LookRotation(Vector3.left)
+        if (weaponUnlockPopupPrefab == null)
+            return;
+
+        if (activePopup != null)
+            Destroy(activePopup);
+
+        activePopup = Instantiate(
+            weaponUnlockPopupPrefab,
+            popupParent
         );
+
+        WeaponUnlockUi popupUI =
+            activePopup.GetComponent<WeaponUnlockUi>();
+
+        if (popupUI != null)
+            popupUI.Show(unlockedWeapon);
+
+        Destroy(activePopup, popupDuration);
     }
 }
+

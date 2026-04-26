@@ -82,10 +82,7 @@ public class SpaceBoundaries : MonoBehaviour
         if (warningText == null)
             return;
 
-        warningText.text =
-            "WARNING: DEEP SPACE\n" +
-            "Return to the inner zone\n" +
-            "Destruction in " + Mathf.CeilToInt(currentCountdown) + "s";
+        warningText.text = Mathf.CeilToInt(currentCountdown) + "s";
     }
 
     void DestroyPlayer()

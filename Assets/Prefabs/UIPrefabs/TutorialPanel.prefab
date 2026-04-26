@@ -975,12 +975,42 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8063609272687953924, guid: 58206228119b2ed4ab0ad31cdc8ed92c, type: 3}
+      propertyPath: m_text
+      value: '
+
+        Your goal is simple:
+
+        Stay alive.
+
+
+
+        Enemies
+        attack in waves. Some waves may be deadly, others may bring rewards like
+        new weapons.
+
+
+
+        Fight as long as you can, survive the chaos, and
+        beat your best score!
+
+
+
+        Basic Ship Controls:
+
+        W / S / A
+        / D - Move
+
+        Left Shift - Move Up
+
+        Left Ctrl - Move Down'
+      objectReference: {fileID: 0}
+    - target: {fileID: 8063609272687953924, guid: 58206228119b2ed4ab0ad31cdc8ed92c, type: 3}
       propertyPath: m_fontSize
-      value: 22
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 8063609272687953924, guid: 58206228119b2ed4ab0ad31cdc8ed92c, type: 3}
       propertyPath: m_fontSizeBase
-      value: 22
+      value: 21
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

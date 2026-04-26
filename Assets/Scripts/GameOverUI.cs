@@ -32,15 +32,13 @@ public class GameOverUI : MonoBehaviour
             scoreText.text = "Score: " + score;
     }
 
-    void HandleResetClicked()
+    public void HandleResetClicked()
     {
-        if (onResetClicked != null)
-            onResetClicked.Invoke();
+        GameManager.ResetGame();
     }
 
-    void HandleEndClicked()
+    public void HandleEndClicked()
     {
-        if (onEndClicked != null)
-            onEndClicked.Invoke();
+        GameManager.EndGame();
     }
 }
