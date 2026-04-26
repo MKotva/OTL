@@ -75,6 +75,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 22f29cec79970b14e83e5c57496bb36a, type: 3}
       insertIndex: -1
       addedObject: {fileID: -1032857854615201135}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 22f29cec79970b14e83e5c57496bb36a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7478658196907024152}
   m_SourcePrefab: {fileID: 100100000, guid: 22f29cec79970b14e83e5c57496bb36a, type: 3}
 --- !u!1 &267156497600070224 stripped
 GameObject:
@@ -158,13 +161,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 353cc8b9ad47c7d4eb42ea75ff4cba1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShieldDamageController
+  shieldDamage: 15
+  autoCalculateDamageFromScale: 0
   baseShieldDamage: 10
   damageMultiplier: 1
-  useScaleForDamage: 1
   scaleDamagePower: 1.5
   minShieldDamage: 5
   maxShieldDamage: 150
-  shieldDamage: 15
+  ignoredShields: []
+  ignoredShieldColliders: []
   destroyOnShieldHit: 1
   destroyOnlyWhenShieldAbsorbs: 1
 --- !u!114 &-1032857854615201135
@@ -182,5 +187,19 @@ MonoBehaviour:
   maxHealth: 100
   health: 100
   destroyWhenDead: 1
-  deathEffectPrefab: {fileID: 3978725368343409356, guid: e4fbb8bfb89428442a66297467173d9e, type: 3}
+  deathEffectPrefab: {fileID: 6459925200859315265, guid: 7ba8e1f14cecb8249b6ca51092d78c97, type: 3}
   deathEffectLifetime: 2
+--- !u!114 &7478658196907024152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 267156497600070224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43c8eba2a8bf668449eb3e40615c11e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  radarColor: {r: 0.9716981, g: 0.8262649, b: 0, a: 1}
+  dotSize: 10
