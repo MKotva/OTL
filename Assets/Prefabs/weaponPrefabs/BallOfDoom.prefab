@@ -10,15 +10,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 2b9bdd34d59e58646b999ea51f38ea8a, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2b9bdd34d59e58646b999ea51f38ea8a, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2b9bdd34d59e58646b999ea51f38ea8a, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2b9bdd34d59e58646b999ea51f38ea8a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -132,8 +132,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Projectile
   speed: 666
   lifeTime: 5
-  targetZScale: 0.5
-  growDuration: 0.08
+  targetZScale: 2
+  targetYScale: 2
+  targetXScale: 2
+  growDuration: 0.15
   shrinkDuration: 0.15
   explosionLifetime: 2
   destroyOnHit: 1
@@ -161,7 +163,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 5.2
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}

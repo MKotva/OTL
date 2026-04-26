@@ -132,11 +132,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Projectile
   speed: 0
   lifeTime: 0
-  targetZScale: 0.5
-  growDuration: 0.08
-  shrinkDuration: 0.15
+  targetZScale: 25
+  targetYScale: 25
+  targetXScale: 25
+  growDuration: 0
+  shrinkDuration: 0
   explosionLifetime: 2
-  destroyOnHit: 1
+  destroyOnHit: 0
   expirePrefab: {fileID: 3978725368343409356, guid: e4fbb8bfb89428442a66297467173d9e, type: 3}
   onHit: {fileID: 11400000, guid: 592d98938486769408c49b632359b933, type: 2}
   ignoreRoot: {fileID: 0}

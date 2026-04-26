@@ -2144,8 +2144,12 @@ PrefabInstance:
     m_TransformParent: {fileID: 587578467}
     m_Modifications:
     - target: {fileID: 66485974404820710, guid: 7a128e7842ae69f48af8f38f180d1420, type: 3}
+      propertyPath: weapon
+      value: 
+      objectReference: {fileID: 5374047366346657037, guid: a020bdc8354d0f74bbf08eedc172cd1f, type: 3}
+    - target: {fileID: 66485974404820710, guid: 7a128e7842ae69f48af8f38f180d1420, type: 3}
       propertyPath: fireKey
-      value: 50
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 66485974404820710, guid: 7a128e7842ae69f48af8f38f180d1420, type: 3}
       propertyPath: ignoreRoot
@@ -2154,6 +2158,10 @@ PrefabInstance:
     - target: {fileID: 66485974404820710, guid: 7a128e7842ae69f48af8f38f180d1420, type: 3}
       propertyPath: fireCooldown
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 66485974404820710, guid: 7a128e7842ae69f48af8f38f180d1420, type: 3}
+      propertyPath: mouseFireButton
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 66485974404820710, guid: 7a128e7842ae69f48af8f38f180d1420, type: 3}
       propertyPath: projectileSpeed
@@ -2246,6 +2254,14 @@ PrefabInstance:
     - target: {fileID: 2371244892721680702, guid: 7a128e7842ae69f48af8f38f180d1420, type: 3}
       propertyPath: m_Name
       value: Turret
+      objectReference: {fileID: 0}
+    - target: {fileID: 5484355523791211925, guid: 7a128e7842ae69f48af8f38f180d1420, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.83
+      objectReference: {fileID: 0}
+    - target: {fileID: 5484355523791211925, guid: 7a128e7842ae69f48af8f38f180d1420, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

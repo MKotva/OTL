@@ -113,6 +113,7 @@ public class AsteroidRingSpawner : MonoBehaviour
         SetupRigidbody(asteroid, scale);
         SetupMotion(asteroid, groupVelocity);
         SetupShieldDamage(asteroid, scale);
+        SetupAsteroidProof(asteroid);
     }
 
     void SetupRigidbody(GameObject asteroid, float scale)
@@ -176,6 +177,11 @@ public class AsteroidRingSpawner : MonoBehaviour
 
         if (damageSource.autoCalculateDamageFromScale)
             damageSource.RecalculateDamage(scale);
+    }
+    void SetupAsteroidProof(GameObject asteroid)
+    {
+        CollisionScript collisionScript =  asteroid.GetComponent<CollisionScript>();
+        collisionScript.ignoreRoot = this.gameObject.transform;
     }
 
     Vector3 GetRandomPointNearGroup(Vector3 groupCenter)
