@@ -10,15 +10,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 2b9bdd34d59e58646b999ea51f38ea8a, type: 3}
       propertyPath: m_LocalScale.x
-      value: 100
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2b9bdd34d59e58646b999ea51f38ea8a, type: 3}
       propertyPath: m_LocalScale.y
-      value: 100
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2b9bdd34d59e58646b999ea51f38ea8a, type: 3}
       propertyPath: m_LocalScale.z
-      value: 100
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2b9bdd34d59e58646b999ea51f38ea8a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -64,6 +64,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -843228051602210336, guid: 2b9bdd34d59e58646b999ea51f38ea8a, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: a7e8979090df271449813484111139a3, type: 2}
     - target: {fileID: 919132149155446097, guid: 2b9bdd34d59e58646b999ea51f38ea8a, type: 3}
       propertyPath: m_Name
       value: SuperBallOfDoom
@@ -132,11 +136,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Projectile
   speed: 0
   lifeTime: 0
-  targetZScale: 25
-  targetYScale: 25
-  targetXScale: 25
-  growDuration: 0
-  shrinkDuration: 0
+  targetZScale: 10
+  targetYScale: 10
+  targetXScale: 10
+  growDuration: 3
+  shrinkDuration: 0.1
   explosionLifetime: 2
   destroyOnHit: 0
   expirePrefab: {fileID: 3978725368343409356, guid: e4fbb8bfb89428442a66297467173d9e, type: 3}
