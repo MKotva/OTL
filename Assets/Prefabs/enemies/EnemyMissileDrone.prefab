@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 7267754328493211068}
   - component: {fileID: 1664311183782188257}
   - component: {fileID: 3411193038331936117}
+  - component: {fileID: 5344280691623092465}
   m_Layer: 0
   m_Name: EnemyMissileDrone
   m_TagString: Untagged
@@ -70,7 +71,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyGun
   weapon: {fileID: 5374047366346657037, guid: e00b2df358926b44e83b5dcf28361c4a, type: 3}
   enemyMovementScript: {fileID: 6092882823990330213, guid: 8c6c14c471b6d2d45a343714aed0865d, type: 3}
-  targetingRange: 1
+  targetingRange: 2
   shotCount: 0
   selfDestruct: 1
   mainTarget: {fileID: 0}
@@ -155,6 +156,20 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 8.070946, y: 5.6454444, z: 12.009758}
   m_Center: {x: 3.5354729, y: -0.34134126, z: 22.24924}
+--- !u!114 &5344280691623092465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1022902871876886284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43c8eba2a8bf668449eb3e40615c11e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  radarColor: {r: 0.972549, g: 0, b: 0.6838889, a: 1}
+  dotSize: 14
 --- !u!1001 &3624716912570038726
 PrefabInstance:
   m_ObjectHideFlags: 0

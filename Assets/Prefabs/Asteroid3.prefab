@@ -78,6 +78,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b52b228d13476d143be331f26a635cc3, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6410729211051714511}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b52b228d13476d143be331f26a635cc3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6154683454244709022}
   m_SourcePrefab: {fileID: 100100000, guid: b52b228d13476d143be331f26a635cc3, type: 3}
 --- !u!1 &8003842359427722285 stripped
 GameObject:
@@ -203,3 +206,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   radarColor: {r: 0.9716981, g: 0.8262649, b: 0, a: 1}
   dotSize: 10
+--- !u!114 &6154683454244709022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8003842359427722285}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7568cefe2ce50344ac6816b83891d37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CollisionScript
+  collider: {fileID: -2912168427016586596}
+  onHit: {fileID: 11400000, guid: 91c65577332a01042b4646bac524885c, type: 2}
