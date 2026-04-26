@@ -132,7 +132,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Projectile
   speed: 0
   lifeTime: 0
-  targetZScale: 0.5
+  targetZScale: 25
   growDuration: 0.08
   shrinkDuration: 0.15
   explosionLifetime: 2

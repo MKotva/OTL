@@ -7,6 +7,8 @@ public class Projectile : MonoBehaviour
 
     [Header("Scale Animation")]
     public float targetZScale = 0.1f;
+    public float targetYScale = 0.1f;
+    public float targetXScale = 0.1f;
     public float growDuration = 0.08f;
     public float shrinkDuration = 0.15f;
 
@@ -29,11 +31,11 @@ public class Projectile : MonoBehaviour
     {
         originalScale = transform.localScale;
 
-     //   transform.localScale = new Vector3(
-     //       originalScale.x,
-     //       originalScale.y,
-     //       0f
-     //   );
+        transform.localScale = new Vector3(
+            originalScale.x,
+            originalScale.y,
+            0f
+        );
          selfPrefab.DamageInstance = this.DamageInstance;
         selfPrefab.expirePrefab =this.expirePrefab;
         selfPrefab.explosionLifetime=this.explosionLifetime;
@@ -50,7 +52,7 @@ public class Projectile : MonoBehaviour
 
         transform.position += transform.forward * speed * Time.deltaTime;
 
-       // UpdateScaleAnimation();
+        UpdateScaleAnimation();
 
         if (age >= lifeTime)
             expire(transform.position);
@@ -59,11 +61,15 @@ public class Projectile : MonoBehaviour
     void UpdateScaleAnimation()
     {
         float zScale = targetZScale;
+        float yScale = targetYScale;
+        float xScale = targetXScale;
 
         if (age < growDuration)
         {
             float t = age / growDuration;
             zScale = Mathf.Lerp(0f, targetZScale, t);
+            yScale = Mathf.Lerp(0f, targetYScale, t);
+            xScale = Mathf.Lerp(0f, targetXScale, t);
         }
 
         float timeUntilDeath = lifeTime - age;
@@ -72,11 +78,13 @@ public class Projectile : MonoBehaviour
         {
             float t = timeUntilDeath / shrinkDuration;
             zScale = Mathf.Lerp(0f, targetZScale, t);
+            yScale = Mathf.Lerp(0f, targetYScale, t);
+            xScale = Mathf.Lerp(0f, targetXScale, t);
         }
 
         transform.localScale = new Vector3(
-            originalScale.x,
-            originalScale.y,
+            xScale,
+            yScale,
             zScale
         );
     }
